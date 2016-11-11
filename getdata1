@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+      
+        static void Main(string[] args)
+        {
+
+            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\ConsoleApplication2\ConsoleApplication2\bin\Debug\gamelist.txt";
+            string startingLine = "Library of Games Played With Comments and Rating" + Environment.NewLine + Environment.NewLine;
+
+
+            if (System.IO.File.Exists(libLocation))
+                 {
+                Console.WriteLine("Library exists!");
+                 }
+             else
+                 {
+                      System.IO.File.WriteAllText("gamelist.txt", startingLine);
+                 }
+
+            Console.WriteLine("What game do you want to log?");
+            string game = Console.ReadLine();
+
+            Console.WriteLine("Thank you for playing {0}!", game);
+
+            Console.WriteLine("What comments do you want to add about {0}?", game);
+            string comments = Console.ReadLine();
+
+            Console.WriteLine("So you thought {0}", comments);
+            Console.WriteLine("Interesting...");
+
+            System.IO.File.AppendAllText("gamelist.txt", game + Environment.NewLine);
+            System.IO.File.AppendAllText("gamelist.txt", comments + Environment.NewLine);
+
+            Console.WriteLine("Do you want to add a rating? y or n");
+            string ratingQuestion = Console.ReadLine();
+
+            if (ratingQuestion == "y")
+            {
+                string ooT = "/10";
+                Console.WriteLine("What is your rating out of 10?");
+                string rating = Console.ReadLine();
+                System.IO.File.AppendAllText("gamelist.txt", rating + ooT + Environment.NewLine + Environment.NewLine);
+                Console.WriteLine("Thank you!");
+            }
+            else
+            {
+                Console.WriteLine("No problem, thank you!");
+                System.IO.File.AppendAllText("gamelist.txt", Environment.NewLine);
+            }
+
+            Console.ReadLine();
+        }
+
+/*
+        private static string getRating()
+        {
+            Console.WriteLine("What is your rating out of 10?"")
+        }
+*/
+    }
+}
