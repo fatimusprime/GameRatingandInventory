@@ -12,12 +12,13 @@ namespace InventorySystem
 {
     public partial class Form1 : Form
     {
+        string libLocation = @"C:\GameLibrary\gamelist.txt";
         string startingLine = "Library of Games Played With Comments and Rating" + Environment.NewLine + Environment.NewLine;
 
         string rating;
         string title;
         string comment;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -26,12 +27,12 @@ namespace InventorySystem
 
         private void gameTitle_TextChanged(object sender, EventArgs e)
         {
-            title = gameTitle.Text; 
+            title = gameTitle.Text;
         }
-       
-        private void textBox3_TextChanged(object sender, EventArgs e)
+
+        private void ratingbox_TextChanged(object sender, EventArgs e)
         {
-             rating = textBox3.Text;
+            rating = ratingbox.Text;
         }
 
         private void comments_TextChanged(object sender, EventArgs e)
@@ -47,28 +48,23 @@ namespace InventorySystem
         private void Submit_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You clicked Submit, thank you!", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            System.IO.File.AppendAllText("gamelist.txt", title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
+            gameTitle.Clear();
+            ratingbox.Clear();
+            comments.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            System.IO.File.Delete(@"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\InventorySystem\InventorySystem\bin\Debug\gamelist.txt");
+            System.IO.File.Delete(libLocation);
             statusOutput.Text.Remove(0);
             statusOutput.Text = "Library deleted!";
-            System.IO.File.WriteAllText("gamelist.txt", startingLine);
+            System.IO.File.WriteAllText(libLocation, startingLine);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        
         private void checkLibrary()
         {
-            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\InventorySystem\InventorySystem\bin\Debug\gamelist.txt";
-
-
             if (System.IO.File.Exists(libLocation))
             {
                 statusOutput.Text = "Library exists!";
@@ -76,9 +72,10 @@ namespace InventorySystem
             else
             {
                 statusOutput.Text = "New Library Created.";
-                System.IO.File.WriteAllText("gamelist.txt", startingLine);
+                System.IO.File.WriteAllText(libLocation, startingLine);
             }
         }
-   
+            
     }
+
 }
