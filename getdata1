@@ -12,18 +12,7 @@ namespace ConsoleApplication2
         static void Main(string[] args)
         {
 
-            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\ConsoleApplication2\ConsoleApplication2\bin\Debug\gamelist.txt";
-            string startingLine = "Library of Games Played With Comments and Rating" + Environment.NewLine + Environment.NewLine;
-
-
-            if (System.IO.File.Exists(libLocation))
-                 {
-                Console.WriteLine("Library exists!");
-                 }
-             else
-                 {
-                      System.IO.File.WriteAllText("gamelist.txt", startingLine);
-                 }
+            checkLibrary();
 
             Console.WriteLine("What game do you want to log?");
             string game = Console.ReadLine();
@@ -59,11 +48,22 @@ namespace ConsoleApplication2
             Console.ReadLine();
         }
 
-/*
-        private static string getRating()
+
+        private static void checkLibrary()
         {
-            Console.WriteLine("What is your rating out of 10?"")
+            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\ConsoleApplication2\ConsoleApplication2\bin\Debug\gamelist.txt";
+            string startingLine = "Library of Games Played With Comments and Rating" + Environment.NewLine + Environment.NewLine;
+
+            if (System.IO.File.Exists(libLocation))
+                 {
+                Console.WriteLine("Library exists!");
+            }
+             else
+                 {
+                Console.WriteLine("Creating Library!");
+                System.IO.File.WriteAllText("gamelist.txt", startingLine);
+            }
         }
-*/
+
     }
 }
