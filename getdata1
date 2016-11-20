@@ -16,19 +16,17 @@ namespace ConsoleApplication2
 
             checkLibrary(libLocation);
 
-            Console.WriteLine("What game do you want to log?");
-            string game = Console.ReadLine();
+            Game logGame = new Game();
 
-            Console.WriteLine("Thank you for playing {0}!", game);
+            logGame.getTitle();
+            Console.WriteLine("Thank you for playing {0}!", logGame.Title);
 
-            Console.WriteLine("What comments do you want to add about {0}?", game);
-            string comments = Console.ReadLine();
-
-            Console.WriteLine("So you thought {0}", comments);
+            logGame.getComments();
+            Console.WriteLine("So you thought {0}", logGame.Comments);
             Console.WriteLine("Interesting...");
 
-            System.IO.File.AppendAllText(libLocation, game + Environment.NewLine);
-            System.IO.File.AppendAllText(libLocation, comments + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, logGame.Title + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, logGame.Comments + Environment.NewLine);
 
             Console.WriteLine("Do you want to add a rating? y or n");
             string ratingQuestion = Console.ReadLine();
@@ -36,9 +34,9 @@ namespace ConsoleApplication2
             if (ratingQuestion == "y")
             {
                 string ooT = "/10";
-                Console.WriteLine("What is your rating out of 10?");
-                string rating = Console.ReadLine();
-                System.IO.File.AppendAllText(libLocation, rating + ooT + Environment.NewLine + Environment.NewLine);
+
+                logGame.getRating();
+                System.IO.File.AppendAllText(libLocation, logGame.Rating + ooT + Environment.NewLine + Environment.NewLine);
                 Console.WriteLine("Thank you!");
             }
             else
@@ -68,3 +66,36 @@ namespace ConsoleApplication2
         }
 
     }
+
+    class Game
+    {
+        public string Title { get; set; }
+        public string Comments { get; set; }
+        public string Rating { get; set; }
+
+        public string getTitle()
+        {
+            Console.WriteLine("What game do you want to log?");
+
+            return
+                Title = Console.ReadLine();
+        }
+
+        public string getComments()
+        {
+            Console.WriteLine("What comments do you want to add about {0}?", Title);
+
+            return
+                Comments = Console.ReadLine();
+        }
+
+        public string getRating()
+        {
+            Console.WriteLine("What is your rating out of 10?");
+
+            return
+                Rating = Console.ReadLine();
+        }
+    }
+
+}
