@@ -27,8 +27,8 @@ namespace ConsoleApplication2
             Console.WriteLine("So you thought {0}", comments);
             Console.WriteLine("Interesting...");
 
-            System.IO.File.AppendAllText("gamelist.txt", game + Environment.NewLine);
-            System.IO.File.AppendAllText("gamelist.txt", comments + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, game + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, comments + Environment.NewLine);
 
             Console.WriteLine("Do you want to add a rating? y or n");
             string ratingQuestion = Console.ReadLine();
@@ -38,13 +38,13 @@ namespace ConsoleApplication2
                 string ooT = "/10";
                 Console.WriteLine("What is your rating out of 10?");
                 string rating = Console.ReadLine();
-                System.IO.File.AppendAllText("gamelist.txt", rating + ooT + Environment.NewLine + Environment.NewLine);
+                System.IO.File.AppendAllText(libLocation, rating + ooT + Environment.NewLine + Environment.NewLine);
                 Console.WriteLine("Thank you!");
             }
             else
             {
                 Console.WriteLine("No problem, thank you!");
-                System.IO.File.AppendAllText("gamelist.txt", Environment.NewLine);
+                System.IO.File.AppendAllText(libLocation, Environment.NewLine);
             }
 
             Console.ReadLine();
@@ -63,7 +63,7 @@ namespace ConsoleApplication2
              else
                  {
                 Console.WriteLine("Creating Library!");
-                System.IO.File.WriteAllText("gamelist.txt", startingLine);
+                System.IO.File.WriteAllText(libLocation, startingLine);
             }
         }
 
