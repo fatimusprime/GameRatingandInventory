@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace gameLibraryClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Game myGame = new Game();
+
+            Console.WriteLine("{0}, {1} {2}", myGame.getTitle(), myGame.getComments(), myGame.getRating());
+            Console.ReadLine();
+        }
+    }
+
+    class Game
+    {
+        public string Title { get; set; }
+        public string Comments { get; set; }
+        public string Rating { get; set; }
+  
+        public string getTitle()
+        {
+            Console.WriteLine("What title?");
+
+            return
+                Title = Console.ReadLine();
+        }
+
+        public string getComments()
+        {
+            Console.WriteLine("Commens?");
+
+            return
+                Comments = Console.ReadLine();
+        }
+
+        public string getRating()
+        {
+            Console.WriteLine("Rating?");
+
+            return
+                Rating = Console.ReadLine();
+        }
+
+    }
+}
