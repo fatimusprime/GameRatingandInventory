@@ -74,11 +74,11 @@ namespace InventorySystem
         
         private void gameSubmit()
 		{
-			MessageBox.Show("Game Stored in Library", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
-            gameTitle.Clear();
-            ratingbox.Clear();
-            comments.Clear();
+		    MessageBox.Show("Game Stored in Library", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+		    System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
+		    gameTitle.Clear();
+		    ratingbox.Clear();
+		    comments.Clear();
 		}
             
     }
