@@ -19,6 +19,7 @@ namespace InventorySystem
         string title;
         string comment;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace InventorySystem
 
         private void gameTitle_TextChanged(object sender, EventArgs e)
         {
-            title = gameTitle.Text;
+            title = gameTitle.Text;          
         }
 
         private void ratingbox_TextChanged(object sender, EventArgs e)
@@ -50,12 +51,9 @@ namespace InventorySystem
             gameSubmit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void deleteLib_Click(object sender, EventArgs e)
         {
-            System.IO.File.Delete(libLocation);
-            statusOutput.Text.Remove(0);
-            statusOutput.Text = "Library deleted!";
-            System.IO.File.WriteAllText(libLocation, startingLine);
+            deleteLibrary();
         }
 
 
@@ -71,16 +69,23 @@ namespace InventorySystem
                 System.IO.File.WriteAllText(libLocation, startingLine);
             }
         }
-        
-        private void gameSubmit()
-		{
-		    MessageBox.Show("Game Stored in Library", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-		    System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
-		    gameTitle.Clear();
-		    ratingbox.Clear();
-		    comments.Clear();
-		}
-            
-    }
 
+        private void gameSubmit()
+        {
+            MessageBox.Show("Game Stored in Library", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
+            gameTitle.Clear();
+            ratingbox.Clear();
+            comments.Clear();
+        }
+
+        private void deleteLibrary()
+        {
+            System.IO.File.Delete(libLocation);
+            statusOutput.Text.Remove(0);
+            statusOutput.Text = "Library deleted!";
+            System.IO.File.WriteAllText(libLocation, startingLine);
+        }
+
+    }
 }
