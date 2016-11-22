@@ -47,11 +47,7 @@ namespace InventorySystem
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You clicked Submit, thank you!", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
-            gameTitle.Clear();
-            ratingbox.Clear();
-            comments.Clear();
+            gameSubmit();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,6 +71,15 @@ namespace InventorySystem
                 System.IO.File.WriteAllText(libLocation, startingLine);
             }
         }
+        
+        private void gameSubmit()
+		{
+		    MessageBox.Show("Game Stored in Library", "Submitted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+		    System.IO.File.AppendAllText(libLocation, title + Environment.NewLine + rating + Environment.NewLine + comment + Environment.NewLine + Environment.NewLine);
+		    gameTitle.Clear();
+		    ratingbox.Clear();
+		    comments.Clear();
+		}
             
     }
 
