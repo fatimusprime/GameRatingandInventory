@@ -12,21 +12,20 @@ namespace ConsoleApplication2
         static void Main(string[] args)
         {
 
-            checkLibrary();
+            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\ConsoleApplication2\ConsoleApplication2\bin\Debug\gamelist.txt";
 
-            Console.WriteLine("What game do you want to log?");
-            string game = Console.ReadLine();
+            checkLibrary(libLocation);
 
-            Console.WriteLine("Thank you for playing {0}!", game);
+            Game logGame = new Game();
 
-            Console.WriteLine("What comments do you want to add about {0}?", game);
-            string comments = Console.ReadLine();
+            logGame.getTitle();
+            Console.WriteLine("Thank you for playing {0}!", logGame.Title);
 
-            Console.WriteLine("So you thought {0}", comments);
-            Console.WriteLine("Interesting...");
+            logGame.getComments();
+            Console.WriteLine("So you thought: {0}", logGame.Comments);
 
-            System.IO.File.AppendAllText("gamelist.txt", game + Environment.NewLine);
-            System.IO.File.AppendAllText("gamelist.txt", comments + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, logGame.Title + Environment.NewLine);
+            System.IO.File.AppendAllText(libLocation, logGame.Comments + Environment.NewLine);
 
             Console.WriteLine("Do you want to add a rating? y or n");
             string ratingQuestion = Console.ReadLine();
@@ -34,24 +33,24 @@ namespace ConsoleApplication2
             if (ratingQuestion == "y")
             {
                 string ooT = "/10";
-                Console.WriteLine("What is your rating out of 10?");
-                string rating = Console.ReadLine();
-                System.IO.File.AppendAllText("gamelist.txt", rating + ooT + Environment.NewLine + Environment.NewLine);
-                Console.WriteLine("Thank you!");
+
+                logGame.getRating();
+                System.IO.File.AppendAllText(libLocation, logGame.Rating + ooT + Environment.NewLine + Environment.NewLine);
+                Console.WriteLine("Your game has been added to the library. Thank you!");
             }
             else
             {
-                Console.WriteLine("No problem, thank you!");
-                System.IO.File.AppendAllText("gamelist.txt", Environment.NewLine);
+                Console.WriteLine("No problem, your game has been added to the library. Thank you!");
+                System.IO.File.AppendAllText(libLocation, Environment.NewLine);
             }
 
             Console.ReadLine();
         }
 
 
-        private static void checkLibrary()
+        private static void checkLibrary(string libLocation)
         {
-            string libLocation = @"C:\Users\FatimusPrime\Documents\Visual Studio 2015\Projects\ConsoleApplication2\ConsoleApplication2\bin\Debug\gamelist.txt";
+            
             string startingLine = "Library of Games Played With Comments and Rating" + Environment.NewLine + Environment.NewLine;
 
             if (System.IO.File.Exists(libLocation))
@@ -61,9 +60,41 @@ namespace ConsoleApplication2
              else
                  {
                 Console.WriteLine("Creating Library!");
-                System.IO.File.WriteAllText("gamelist.txt", startingLine);
+                System.IO.File.WriteAllText(libLocation, startingLine);
             }
         }
 
     }
+
+    class Game
+    {
+        public string Title { get; set; }
+        public string Comments { get; set; }
+        public string Rating { get; set; }
+
+        public string getTitle()
+        {
+            Console.WriteLine("What game do you want to log?");
+
+            return
+                Title = Console.ReadLine();
+        }
+
+        public string getComments()
+        {
+            Console.WriteLine("What comments do you want to add about {0}?", Title);
+
+            return
+                Comments = Console.ReadLine();
+        }
+
+        public string getRating()
+        {
+            Console.WriteLine("What is your rating out of 10?");
+
+            return
+                Rating = Console.ReadLine();
+        }
+    }
+
 }
